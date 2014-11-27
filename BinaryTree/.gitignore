@@ -1,0 +1,8 @@
+#ignore all ending with ~
+*~
+
+#ignore the debug folder
+Debug/
+
+#ignore binaries
+bin/
