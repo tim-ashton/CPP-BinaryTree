@@ -29,6 +29,7 @@ public:
 	~BinaryTree();
 
 	void insert(int value);
+	void deleteVal(int value);
 
 private:
 	Node* insert(Node *newNode, Node *root);
