@@ -15,11 +15,7 @@ class BinaryTree {
 		int data;
 		Node *left, *right;
 
-	public:
 		Node(int value);
-		~Node();
-
-		int getData();
 	};
 
 	Node *root;
@@ -29,10 +25,11 @@ public:
 	~BinaryTree();
 
 	void insert(int value);
-	void deleteVal(int value);
+	void deleteNode(int value);
 
 private:
 	Node* insert(Node *newNode, Node *root);
+	Node* deleteNode(int value, Node *root);
 
 };
 
