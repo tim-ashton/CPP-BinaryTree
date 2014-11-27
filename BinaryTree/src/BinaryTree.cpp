@@ -28,6 +28,10 @@ void BinaryTree::insert(int value) {
 	}
 }
 
+void BinaryTree::deleteVal(int value){
+
+}
+
 /*
  * Private
  */
