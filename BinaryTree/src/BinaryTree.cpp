@@ -89,31 +89,9 @@ BinaryTree::Node* BinaryTree::deleteNode(int value, Node *root){
 
 				//delete the rightmost node in the left subtree
 				root->left =  deleteNode(root->data, root->left) ;
-	       }
+			}
 		}
 	}
-
-	/*
-
-    if (compare(toDelete, p.data) < 0)
-    p.left = delete (p.left, toDelete);
-    else
-    if (compare(toDelete, p.data)  > 0)
-    p.right = delete (p.right, toDelete);
-    else
-    {
-       if (p.left == null) return p.right;
-       else
-       if (p.right == null) return p.left;
-       else
-       {
-       // get data from the rightmost node in the left subtree
-          p.data = retrieveData(p.left);
-       // delete the rightmost node in the left subtree
-          p.left =  delete(p.left, p.data) ;
-       }
-    }*/
-
 	return root;
 }
 
