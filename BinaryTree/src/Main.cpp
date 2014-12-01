@@ -39,8 +39,7 @@ int main() {
 	bt->deleteNode(6);
 	bt->deleteNode(5);
 
-
-
+	delete bt;
 	return 0;
 }
 

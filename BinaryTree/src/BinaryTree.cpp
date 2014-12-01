@@ -13,19 +13,13 @@ BinaryTree::BinaryTree() {
 }
 
 BinaryTree::~BinaryTree() {
-	// TODO Auto-generated destructor stub
+	destroyTree(root);
 }
 
 
 
 void BinaryTree::insert(int value) {
-	if(!root){
-		root = new Node(value);
-	}
-	else {
-		Node *newNode = new Node(value);
-		insert(newNode, root);
-	}
+	insert(value, root);
 }
 
 
@@ -33,50 +27,66 @@ void BinaryTree::deleteNode(int value){
 	root = deleteNode(value, root);
 }
 
+
 /*
- * Private
+ * destroys all nodes in the tree and
+ * leaves root as null ptr.
  */
-BinaryTree::Node* BinaryTree::insert(Node *newNode, Node *root){
-	if(!root){
-		root = newNode;
-	}
-	else if(newNode->data < root->data){
-		insert(newNode, root->left);
-		if(!root->left)
-			root->left = newNode;
-	}
-	else {
-		insert(newNode, root->right);
-		if(!root->right)
-			root->right = newNode;
-	}
-	return root;
+void BinaryTree::destroyTree(){
+	destroyTree(root);
+	root = 0;
 }
 
 /*
- * Cases for deletion
- *
- * is not in a tree;
- * is a leaf;
- * has only one child;
- * has two children.
+ * Private
  */
+
+
+void BinaryTree::insert(int value, Node *&node){
+	if(!node){
+		node = new Node(value);
+	}
+	else{
+		if(value < *node->data) {
+			insert (value, node->left);
+		}
+		else{
+			insert (value, node->right);
+		}
+	}
+}
+
+
 BinaryTree::Node* BinaryTree::deleteNode(int value, Node *root){
 
 	if(root){
-		if(value < root->data){
+		if(value < *root->data){
 			root->left = deleteNode(value, root->left);
 		}
-		else if(value > root->data){
+		else if(value > *root->data){
 			root->right = deleteNode(value, root->right);
 
 		}
 		else {
 			if(root->left == 0){
-				return root->right;
+				Node* tmp = root->right;
+				delete root;
+				root = 0;
+
+				if(tmp){
+					return tmp;
+				}
+				return root;
 			}
 			else if(root->right == 0){
-				return root->left;
+				Node* tmp = root->left;
+				delete root;
+				root = 0;
+
+				if(tmp){
+					return tmp;
+				}
+				return root;
 			}
 			else{
 
@@ -84,15 +94,28 @@ BinaryTree::Node* BinaryTree::deleteNode(int value, Node *root){
 				Node* tmp = root->left;
 				while(tmp->right != 0){
 					tmp = tmp->right;
+
 				}
-				root->data = tmp->data;
+				root->assignNewData(*tmp->data);
 
 				//delete the rightmost node in the left subtree
-				root->left =  deleteNode(root->data, root->left) ;
+				root->left =  deleteNode(*root->data, root->left) ;
 			}
 		}
 	}
 	return root;
+}
+
+
+void BinaryTree::destroyTree(Node *node)
+{
+	if(node)
+	{
+		destroyTree(node->left);
+		destroyTree(node->right);
+		delete node;
+		node = 0;
+	}
 }
 
 
@@ -101,8 +124,20 @@ BinaryTree::Node* BinaryTree::deleteNode(int value, Node *root){
  */
 
 BinaryTree::Node::Node(int value){
-	data = value;
+	data = new int(value);
 	left = right = 0;
+}
+
+BinaryTree::Node::~Node(){
+	delete data;
+	data = 0;
+	left = right = 0;
+}
+
+void BinaryTree::Node::assignNewData(int value){
+	delete data;
+	data = 0;
+	data = new int(value);
 }
 
 

@@ -12,10 +12,13 @@ class BinaryTree {
 
 	class Node{
 	public:
-		int data;
+		int *data;
 		Node *left, *right;
 
 		Node(int value);
+		~Node();
+
+		void assignNewData(int value);
 	};
 
 	Node *root;
@@ -26,10 +29,12 @@ public:
 
 	void insert(int value);
 	void deleteNode(int value);
+	void destroyTree();
 
 private:
-	Node* insert(Node *newNode, Node *root);
-	Node* deleteNode(int value, Node *root);
+	void insert(int value, Node *&node);
+	Node* deleteNode(int value, Node *node);
+	void destroyTree(Node *node);
 
 };
 
