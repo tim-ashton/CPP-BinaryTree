@@ -18,7 +18,7 @@ class BinaryTree {
 		Node(int value);
 		~Node();
 
-		void assignNewData(int value);
+		void setData(int value);
 	};
 
 	Node *root;
@@ -29,11 +29,18 @@ public:
 
 	void insert(int value);
 	void deleteNode(int value);
+	void preOrder();
+	void inOrder();
+	void postOrder();
 	void destroyTree();
+
 
 private:
 	void insert(int value, Node *&node);
 	Node* deleteNode(int value, Node *node);
+	void preOrder(Node *node);
+	void inOrder(Node *node);
+	void postOrder(Node *node);
 	void destroyTree(Node *node);
 
 };

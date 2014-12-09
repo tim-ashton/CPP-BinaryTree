@@ -15,7 +15,6 @@ using namespace std;
 int main() {
 	BinaryTree *bt = new BinaryTree();
 
-
 	bt->insert(7);
 	bt->insert(6);
 	bt->insert(8);
@@ -27,17 +26,41 @@ int main() {
 	bt->insert(5);
 	bt->insert(1);
 
+	bt->preOrder();
+	cout << "\n";
+
+	bt->inOrder();
+	cout << "\n";
+
+	bt->postOrder();
+	cout << "\n";
+
+	bt->deleteNode(1);
+	bt->inOrder();
+	cout << "\n";
+
+	bt->deleteNode(3);
+	bt->inOrder();
+	cout << "\n";
+
+	bt->deleteNode(7);
+	bt->inOrder();
+	cout << "\n";
+
+	bt->deleteNode(5);
+	bt->inOrder();
+
 	bt->deleteNode(15);
 	bt->deleteNode(9);
-	bt->deleteNode(7);
+
 	bt->deleteNode(4);
 	bt->deleteNode(8);
-	bt->deleteNode(3);
+
 	bt->deleteNode(1);
 	bt->deleteNode(11);
 	bt->deleteNode(9);
 	bt->deleteNode(6);
-	bt->deleteNode(5);
+
 
 	delete bt;
 	return 0;
