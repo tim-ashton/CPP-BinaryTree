@@ -38,7 +38,7 @@ int main() {
 	bt->deleteNode(1);
 	bt->inOrder();
 	cout << "\n";
-//
+
 	bt->deleteNode(3);
 	bt->inOrder();
 	cout << "\n";
